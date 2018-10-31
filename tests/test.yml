@@ -1,7 +1,5 @@
 ---
-- hosts: all
-  defaults_files:
-    - '../defaults/main.yml'
+- hosts: localhost  
   vars_files:
     - '../vars/main.yml'
   tasks:

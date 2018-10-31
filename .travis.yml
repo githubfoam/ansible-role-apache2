@@ -1,0 +1,40 @@
+---
+language: python
+python: "2.7"
+
+before_install:
+   # Make sure everything's up to date.
+   - sudo apt-get update -qq
+
+install:
+  # Install Ansible.
+  - pip install ansible
+  # Add ansible.cfg to pick up roles path.
+  - "printf '[defaults]\nroles_path = ../' > ansible.cfg"
+
+script:
+  # Run tests.
+  # Check the role/playbook's syntax.
+  #If there are any syntax errors, Travis will fail the build and output the errors in the log.
+  - ansible-playbook -i tests/inventory tests/test.yml --syntax-check
+  # Run the role/playbook with ansible-playbook.
+  #Ansible returns a non-zero exit code if the playbook run fails, so Travis will know whether the command succeeded or failed.
+  - "ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo"
+  # Run the role/playbook again, checking to make sure it's idempotent.
+  #This command runs the exact same command as before, but pipes the results through grep, which checks to make sure ‘changed’
+  #and ‘failed’ both report 0. If there were no changes or failures, the idempotence test passes
+  #(and Travis sees the 0 exit and is happy), but if there were any changes or failures, the test fails (and Travis sees the 1 exit and reports a build failure).
+  - >
+    ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo
+    | grep -q 'changed=0.*failed=0'
+    && (echo 'Idempotence test: pass' && exit 0)
+    || (echo 'Idempotence test: fail' && exit 1)
+  # Request a page via the web server, to make sure it's running and responds.
+  #check is whether the role actually did what it was supposed to do. If it configured a web server, is the server responding on port 80 or 443 without any errors
+  # Request a page via the web server, to make sure it's running and responds.
+  #testing a web server by loading ‘localhost’; curl will exit with a 0 status (and dump the output of the web server’s response) if the server responds with a 200 OK statu
+  #exit with a non-zero status if the server responds with an error status (like 500) or is unavailable.
+  - "curl http://localhost/"
+
+notifications:
+webhooks: https://galaxy.ansible.com/api/v1/notifications/

@@ -1,6 +1,8 @@
 ---
 - hosts: localhost
-  remote_user: root
-  roles:
-    #- apache
-    - ansible-role-apache2
+  vars_files:
+    - '../vars/main.yml'
+  tasks:
+    - include: '../tasks/main.yml'
+  handlers:
+    - include: '../handlers/main.yml'

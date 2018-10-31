@@ -4,11 +4,17 @@ python: "2.7"
 
 env:
   - SITE=test.yml
+  - CONTAINER_ID=$(mktemp)
+
+services:
+  - docker
+
 
 before_install:
    # Make sure everything's up to date.
    - sudo apt-get update -qq
    - sudo apt-get install -y curl
+   - sudo docker pull centos:7
 
 install:
   # Install Ansible.
@@ -29,7 +35,7 @@ script:
   #   && (echo 'Idempotence test: pass' && exit 0)
   #   || (echo 'Idempotence test: fail' && exit 1)
   # Test apache starting page
-  - "curl http://localhost/"
+  #- "curl http://localhost/"
 #
 # notifications:
 # webhooks: https://galaxy.ansible.com/api/v1/notifications/

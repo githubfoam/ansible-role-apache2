@@ -1,8 +1,8 @@
 version: 1.0.{build}
 image: ubuntu
 
-services:
-- docker
+install:
+  - docker version
 
 test_script:
 - docker run hello-world

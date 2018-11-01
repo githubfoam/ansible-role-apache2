@@ -46,7 +46,7 @@ galaxy_info:
   #   - 1.0
   #   - 7
   #   - 99.99
-   platforms:
+  platforms:
    - name: Centos7
   galaxy_tags: []
     # List tags for your role here, one per line. A tag is a keyword that describes

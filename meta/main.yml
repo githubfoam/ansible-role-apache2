@@ -1,6 +1,6 @@
 galaxy_info:
   author: githubfoam
-  description: role for apache2
+  description: ansible role to deploy apache2
   company: NA
 
   # If the issue tracker for your role is not on github, uncomment the
@@ -14,7 +14,7 @@ galaxy_info:
   # - GPLv3
   # - Apache
   # - CC-BY
-  license: license (GPLv2, CC-BY, etc)
+  license: BSD
 
   min_ansible_version: 2.4
 
@@ -36,9 +36,9 @@ galaxy_info:
   # https://galaxy.ansible.com/api/v1/platforms/
   #
   platforms:
-   - name: Centos
+   - name: Ubuntu
      versions:
-     - all
+     - xenial
   #   - 25
   # - name: SomePlatform
   #   versions:

@@ -29,10 +29,14 @@ build_script:
       | grep -q 'changed=0.*failed=0'
       && (echo 'Idempotence test: pass' && exit 0)
       || (echo 'Idempotence test: fail' && exit 1)
-- 'sudo docker stop "$(cat ${container_id})" '
-- 'sudo docker rm -f "$(cat ${container_id})"'
+#- 'sudo docker stop "$(cat ${container_id})" '
+#- 'sudo docker rm -f "$(cat ${container_id})"'
 
 
 test_script:
 
 build: off
+
+notifications:
+  - provider: Webhook
+    url: https://galaxy.ansible.com/api/v1/notifications/

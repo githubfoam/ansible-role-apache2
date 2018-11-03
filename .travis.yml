@@ -27,7 +27,7 @@ script:
   # Run tests.
   - ansible-playbook -i tests/inventory tests/test.yml --syntax-check
   # Run the role/playbook with ansible-playbook.
-  #- "ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo"
+  - "ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo"
   #- "ansible-playbook -i tests/inventory tests/test.yml --connection=local --become"
   #- >
   #   ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo

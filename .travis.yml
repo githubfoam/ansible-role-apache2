@@ -24,10 +24,11 @@ before_install:
 script:
   # Create a random file to store the container ID.
   - container_id=$(mktemp)
+  - role_name="ansible-role-apache2"
   # Run container in detached state
   - sudo docker run --detach --volume="${PWD}":/etc/ansible/roles/role_under_test:ro ${run_opts} ${distribution}-${version}:ansible "${init}" > "${container_id}"
   # Ansible syntax check.
-  - 'sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=true ansible-playbook -v /etc/ansible/roles/role_under_test/tests/test.yml --syntax-check'
+  - 'sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=true ansible-playbook -v /etc/ansible/roles/${role_name}/tests/test.yml --syntax-check'
 
   # Test role.
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/${role_name}/tests/test.yml'

@@ -1,11 +1,6 @@
 version: 1.0.{build}
 image: ubuntu1804
 
-env:
-  - distribution: centos
-    init:        /usr/lib/systemd/systemd
-    version: 7
-
 services:
   - docker
 

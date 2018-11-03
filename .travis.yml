@@ -27,7 +27,12 @@ script:
   # Run tests.
   - ansible-playbook -i tests/inventory tests/test.yml --syntax-check
   # Run the role/playbook with ansible-playbook.
-  - "ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo"
+  #The sudo command line option has been deprecated in
+  # favor of the "become" command line arguments. This feature will be removed in
+  # version 2.9. Deprecation warnings can be disabled by setting
+  # deprecation_warnings=False in ansible.cfg.
+  # - "ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo"
+  - "ansible-playbook -i tests/inventory tests/test.yml --connection=local --become"
   #- "ansible-playbook -i tests/inventory tests/test.yml --connection=local --become"
   #- >
   #   ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo

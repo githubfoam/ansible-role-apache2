@@ -10,7 +10,8 @@ services:
   - docker
 
 install:
-- 'sudo docker pull ${distribution}:${version}'
+#- 'sudo docker pull ${distribution}:${version}'
+-  sudo docker pull centos:7
 #- sudo apt-get update -qq
 test_script:
 #- npm test

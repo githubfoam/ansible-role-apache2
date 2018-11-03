@@ -2,7 +2,7 @@ version: 1.0.{build}
 image:
   #- ubuntu1604
   - ubuntu1804
-#image: ubuntu1804
+
 
 environment:
   distribution: centos
@@ -14,29 +14,33 @@ services:
 
 install:
 - 'sudo docker pull ${distribution}:${version}'
-#- 'sudo docker build --no-cache --rm --file=tests/Dockerfile.${distribution}-${version} --tag=${distribution}-${version}:ansible tests'
-#-  sudo docker pull centos:7
-#- sudo apt-get update -qq
+
 build_script:
+# docker is built
 - 'sudo docker build --no-cache --rm --file=tests/Dockerfile.${distribution}-${version} --tag=${distribution}-${version}:ansible tests'
+# ansible role is tested within the container
 - container_id=$(mktemp)
 - role_name="ansible-role-apache2"
 - 'sudo docker run --detach --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro --volume="${PWD}":/etc/ansible/roles/${role_name}:ro ${distribution}-${version}:ansible ${init} > "${container_id}"'
 - 'sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=true ansible-playbook -v /etc/ansible/roles/${role_name}/tests/test.yml --syntax-check'
 - 'sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=true ansible-playbook -v /etc/ansible/roles/${role_name}/tests/test.yml'
+# idempotence manual testing
 - >
       sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=true ansible-playbook -v /etc/ansible/roles/${role_name}/tests/test.yml
       | grep -q 'changed=0.*failed=0'
       && (echo 'Idempotence test: pass' && exit 0)
       || (echo 'Idempotence test: fail' && exit 1)
-#- 'sudo docker stop "$(cat ${container_id})" '
-#- 'sudo docker rm -f "$(cat ${container_id})"'
+# container is stopped and destroyed
+- 'sudo docker stop "$(cat ${container_id})" '
+- 'sudo docker rm -f "$(cat ${container_id})"'
 
 
 test_script:
+# test scripts must be here
 
 build: off
 
+# Notify Ansible Galaxy when an ansible role builds successfully.
 notifications:
   - provider: Webhook
     url: https://galaxy.ansible.com/api/v1/notifications/

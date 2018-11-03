@@ -3,9 +3,9 @@ image: ubuntu1804
 
 install:
 #- npm install
-sudo apt-get update -qq
+- sudo apt-get update -qq
 test_script:
 #- npm test
-- hostnamectl 
+- hostnamectl
 
 build: off

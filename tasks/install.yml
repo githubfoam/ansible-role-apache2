@@ -2,5 +2,5 @@
 # tasks file for apache
 - name: installing apache2 server
   yum:
-    name: apache2
+    name: httpd
     state: present

@@ -1,9 +1,17 @@
 version: 1.0.{build}
 image: ubuntu1804
 
+env:
+  - distribution: centos
+    init:        /usr/lib/systemd/systemd
+    version: 7
+
+services:
+  - docker
+
 install:
-#- npm install
-- sudo apt-get update -qq
+- 'sudo docker pull ${distribution}:${version}'
+#- sudo apt-get update -qq
 test_script:
 #- npm test
 - hostnamectl

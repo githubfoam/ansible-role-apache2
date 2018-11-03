@@ -37,5 +37,5 @@ script:
   # Test apache starting page
   #- "curl http://localhost/"
 #
-# notifications:
-# webhooks: https://galaxy.ansible.com/api/v1/notifications/
+notifications:
+ webhooks: https://galaxy.ansible.com/api/v1/notifications/

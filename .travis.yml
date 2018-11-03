@@ -13,9 +13,8 @@ services:
 
 
 before_install:
-   - sudo apt-get update -qq
-   - sudo docker pull ${distribution}:${version}
-   - sudo docker build --rm=true --file=tests/Dockerfile.${distribution}-${version} --tag=${distribution}-${version}:ansible tests
+   - 'sudo docker pull ${distribution}:${version}'
+   - 'sudo docker build --rm=true --file=tests/Dockerfile.${distribution}-${version} --tag=${distribution}-${version}:ansible tests '
 
 
 

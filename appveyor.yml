@@ -19,6 +19,9 @@ install:
 #- sudo apt-get update -qq
 build_script:
 - 'sudo docker build --no-cache --rm --file=tests/Dockerfile.${distribution}-${version} --tag=${distribution}-${version}:ansible tests'
+- container_id=$(mktemp)
+- role_name="ansible-apache2"
+- 'sudo docker run --detach --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro --volume="${PWD}":/etc/ansible/roles/${role_name}:ro ${distribution}-${version}:ansible ${init} > "${container_id}"'
 
 test_script:
 #- npm test

@@ -1,8 +1,10 @@
 version: 1.0.{build}
-image: ubuntu
+image: ubuntu1804
 
 install:
-  - docker version
+- npm install
 
 test_script:
-- docker run hello-world
+- npm test
+
+build: off

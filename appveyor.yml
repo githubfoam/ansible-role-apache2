@@ -2,9 +2,10 @@ version: 1.0.{build}
 image: ubuntu1804
 
 install:
-- npm install
-
+#- npm install
+sudo apt-get update -qq
 test_script:
-- npm test
+#- npm test
+- hostnamectl 
 
 build: off

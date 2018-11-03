@@ -1,47 +1,26 @@
 ---
-language: python
-python: "2.7"
+sudo: required
 
 env:
-  - SITE=test.yml
-  - CONTAINER_ID=$(mktemp)
+   - >
+    container_id=$(mktemp)
+    distribution=centos
+    version=7
+    init=/usr/lib/systemd/systemd
+    run_opts="--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
 services:
   - docker
 
 
 before_install:
-   # Make sure everything's up to date.
    - sudo apt-get update -qq
-   - sudo apt-get install -y curl
-   - sudo docker pull centos:7
+   - sudo docker pull ${distribution}:${version}
+   - sudo docker build --rm=true --file=tests/Dockerfile.${distribution}-${version} --tag=${distribution}-${version}:ansible tests
+   
 
-install:
-  # Install Ansible.
-  - pip install ansible
-  # Add ansible.cfg to pick up roles path.
-  #- "printf '[defaults]\nroles_path = ../' > ansible.cfg"
-  - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
+
 
 script:
-  # Run tests.
-  - ansible-playbook -i tests/inventory tests/test.yml --syntax-check
-  # Run the role/playbook with ansible-playbook.
-  #The sudo command line option has been deprecated in
-  # favor of the "become" command line arguments. This feature will be removed in
-  # version 2.9. Deprecation warnings can be disabled by setting
-  # deprecation_warnings=False in ansible.cfg.
-  # - "ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo"
-  - "ansible-playbook -i tests/inventory tests/test.yml --connection=local --become"
-  #- "ansible-playbook -i tests/inventory tests/test.yml --connection=local --become"
-  #- >
-  #   ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo
-  #   | grep -q 'changed=0.*failed=0'
-  #   && (echo 'Idempotence test: pass' && exit 0)
-  #   || (echo 'Idempotence test: fail' && exit 1)
-  # Test apache starting page
-  #- "curl http://localhost/"
-#
-# Notify Ansible Galaxy when an ansible role builds successfully.
-notifications:
- webhooks: https://galaxy.ansible.com/api/v1/notifications/
+  # Create a random file to store the container ID.
+  - sudo docker run --detach --volume="${PWD}":/etc/ansible/roles/role_under_test:ro ${run_opts} ${distribution}-${version}:ansible "${init}" > "${container_id}"

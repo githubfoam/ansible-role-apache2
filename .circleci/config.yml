@@ -18,5 +18,5 @@ jobs:
       #- checkout
       # command will execute in trusty container
       - run:
-          echo "hola mundo"
+          # testing apache
           curl http://localhost:8080

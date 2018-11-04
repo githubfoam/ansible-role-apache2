@@ -7,8 +7,8 @@ jobs:
      #
      - image: httpd
      #
-     # - image: mongo:3.4.17-jessie
-     #      command:[mongod, --smallfiles]
+     - image: mongo
+           command:[mongod, --smallfiles]
 
 
     working_directory: ~/
@@ -18,5 +18,5 @@ jobs:
       # command will execute in trusty container
       - run:
           # testing apache
-          command: cat /etc/hosts
+          #command: cat /etc/hosts
           command: sleep 5 && nc -vz localhost 8080

@@ -18,5 +18,6 @@ jobs:
           # testing apache
           #command: cat /etc/hosts
           command: |
+            apt-get update
             apt-get install netcat -y
             sleep 5 && nc -vz localhost 8080

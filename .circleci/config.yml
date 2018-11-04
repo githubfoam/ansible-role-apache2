@@ -8,6 +8,8 @@ jobs:
     docker:
       # Primary container image where all steps run.
      - image: buildpack-deps:bionic
+     # Primary container image where all steps run.
+     - image: httpd
 
 
     working_directory: ~/

@@ -8,9 +8,7 @@ jobs:
      - image: httpd
      #
      - image: mongo
-           command:[mongod, --smallfiles]
-
-
+           
     working_directory: ~/
 
     steps:

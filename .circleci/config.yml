@@ -7,8 +7,8 @@ jobs:
      #
      - image: httpd
      #
-     - image: mongo
-           
+     - image: mongo:3.4.17-jessie
+
     working_directory: ~/
 
     steps:
@@ -17,4 +17,6 @@ jobs:
       - run:
           # testing apache
           #command: cat /etc/hosts
-          command: sleep 5 && nc -vz localhost 8080
+          command: |
+            sudo apt-get install netcat -y
+            sleep 5 && nc -vz localhost 8080

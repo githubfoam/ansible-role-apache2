@@ -18,4 +18,4 @@ jobs:
       # command will execute in trusty container
       - run:
           # testing apache
-          command: curl http://localhost:8080
+          command: cat /etc/hosts

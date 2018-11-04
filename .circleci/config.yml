@@ -18,5 +18,5 @@ jobs:
           # testing apache
           #command: cat /etc/hosts
           command: |
-            sudo apt-get install netcat -y
+            apt-get install netcat -y
             sleep 5 && nc -vz localhost 8080

@@ -15,4 +15,4 @@ jobs:
     steps:
       #- checkout
       # command will execute in trusty container
-      - run: hostnamectl
+      - run: echo "hola mundo"

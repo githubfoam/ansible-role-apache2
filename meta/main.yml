@@ -1,4 +1,5 @@
 galaxy_info:
+  role_name: apache
   author: githubfoam
   description: ansible role to deploy apache2
   company: NA

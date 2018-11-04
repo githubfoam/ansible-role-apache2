@@ -20,4 +20,4 @@ jobs:
           command: |
             apt-get update
             apt-get install netcat -y
-            sleep 5 && nc -vz localhost 8080
+            sleep 5 && nc -vz localhost 8080 | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)

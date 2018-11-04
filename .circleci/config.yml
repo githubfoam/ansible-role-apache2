@@ -4,11 +4,11 @@ jobs:
     docker:
       # Primary container image where all steps run.
      - image: buildpack-deps:bionic
-     # Primary container image where all steps run.
+     #
      - image: httpd
-     # Primary container image where all steps run.
-     - image: mongo:3.4.17-jessie
-          command:[mongod, --smallfiles]
+     #
+     # - image: mongo:3.4.17-jessie
+     #      command:[mongod, --smallfiles]
 
 
     working_directory: ~/

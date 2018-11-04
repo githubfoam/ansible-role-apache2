@@ -17,4 +17,6 @@ jobs:
     steps:
       #- checkout
       # command will execute in trusty container
-      - run: echo "hola mundo"
+      - run:
+          echo "hola mundo"
+          curl http://localhost:8080

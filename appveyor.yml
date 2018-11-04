@@ -13,7 +13,7 @@ services:
   - docker
 
 install:
-- 'sudo docker pull ${distribution}:${version}'
+
 
 build_script:
 # docker is built

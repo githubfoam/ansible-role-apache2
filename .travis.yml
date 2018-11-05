@@ -18,11 +18,7 @@ services:
 
 
 before_install:
-   #- 'sudo docker build --rm=true --file=tests/Dockerfile.${distribution}-${version} --tag=${distribution}-${version}:ansible tests '
    - 'sudo docker build --rm=true --file=files/Dockerfile.${distribution}-${version} --tag=${distribution}-${version}:ansible tests '
-#
-
-
 
 script:
   # Create a random file to store the container ID.

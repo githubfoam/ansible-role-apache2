@@ -7,10 +7,10 @@ environment:
     init: /usr/lib/systemd/systemd
     version: 7
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  - distribution: ubuntu
-    init: /lib/systemd/systemd
-    version: 1804
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  # - distribution: ubuntu
+  #   init: /lib/systemd/systemd
+  #   version: 1804
+  #   run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
 services:
   - docker

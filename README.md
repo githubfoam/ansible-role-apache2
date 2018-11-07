@@ -7,5 +7,5 @@ CircleCI master branch status
 [![CircleCI](https://circleci.com/gh/githubfoam/ansible-role-apache2/tree/master.svg?style=svg)](https://circleci.com/gh/githubfoam/ansible-role-apache2/tree/master)  
 
 
-Ansible Galaxy Installation  
+Ansible Galaxy Repository  
 ansible-galaxy install githubfoam.ansible_role_apache2    https://galaxy.ansible.com/

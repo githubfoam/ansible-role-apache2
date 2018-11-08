@@ -19,7 +19,8 @@ install:
 
 
 build_script:
-  - sh: ./DockerCentosBuild.sh
+  - sh: ./DockerRedHatAppveyor.sh
+  - sh: ./DockerDebianAppveyor.sh
 # docker is built
 # - 'sudo docker build --no-cache --rm --file=files/dockerfiles/Dockerfile.${distribution}-${version} --tag=${distribution}-${version}:ansible tests'
 # # ansible role is tested within the container

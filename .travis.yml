@@ -3,10 +3,10 @@ sudo: required
 
 env:
   #Linux Docker images for three different CPU architectures: x64, arm and arm64
-  matrix:
-   - ARCH: arm
-   - ARCH: arm64
-   - ARCH: amd64
+  # matrix:
+  #  - ARCH: arm
+  #  - ARCH: arm64
+  #  - ARCH: amd64
 
    -  distribution=centos
       version=7

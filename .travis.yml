@@ -40,4 +40,5 @@ script:
 
  # Notify Ansible Galaxy when an ansible role builds successfully.
 notifications:
+   email: false
    webhooks: https://galaxy.ansible.com/api/v1/notifications/

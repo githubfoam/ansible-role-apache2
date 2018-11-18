@@ -40,6 +40,9 @@ galaxy_info:
    - name: EL
      versions:
      - 7
+   - name: Ubuntu
+     versions:
+     - bionic
   #   - 25
   # - name: SomePlatform
   #   versions:

@@ -20,11 +20,11 @@ File:
 
     - hosts: servers
       roles:
-         - { role: githubfoam.onos }
+         - { role: githubfoam.apache }
 
 Command:
 
-             - $ ansible-galaxy install --roles-path . githubfoam.onos
+             - $ ansible-galaxy install --roles-path . githubfoam.apache
 
 
 License

@@ -9,3 +9,30 @@ CircleCI master branch status
 
 Ansible Galaxy Repository  
 ansible-galaxy install githubfoam.ansible_role_apache2    https://galaxy.ansible.com/
+
+----------------
+
+Playbook
+----------------
+
+
+File:
+
+    - hosts: servers
+      roles:
+         - { role: githubfoam.onos }
+
+Command:
+
+             - $ ansible-galaxy install --roles-path . githubfoam.onos
+
+
+License
+-------
+
+GNU General Public License v3.0
+
+Author Information
+------------------
+
+An optional section for the role authors

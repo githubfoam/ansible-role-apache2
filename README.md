@@ -10,8 +10,8 @@ AppVeyor :[![AppVeyor](https://img.shields.io/appveyor/ci/githubfoam/ansible-rol
 AppVeyor branch :[![AppVeyor branch](https://img.shields.io/appveyor/ci/githubfoam/ansible-role-apache2/master.svg)](https://ci.appveyor.com/project/githubfoam/ansible-role-apache2)  
 AppVeyor tests :[![AppVeyor tests](https://img.shields.io/appveyor/tests/githubfoam/ansible-role-apache2.svg)](https://ci.appveyor.com/project/githubfoam/ansible-role-apache2)
 
-CircleCI master branch status
-[![CircleCI](https://circleci.com/gh/githubfoam/ansible-role-apache2/tree/master.svg?style=svg)](https://circleci.com/gh/githubfoam/ansible-role-apache2/tree/master)  
+CircleCI (all branches : [![CircleCI (all branches)](https://img.shields.io/circleci/project/github/githubfoam/ansible-role-apache2.svg)](https://circleci.com/gh/githubfoam/ansible-role-apache2)    
+CircleCI branch :[![CircleCI branch](https://img.shields.io/circleci/project/github/githubfoam/ansible-role-apache2/master.svg)](https://circleci.com/gh/githubfoam/ansible-role-apache2)
 
 
 [![Docker Automated build](https://img.shields.io/docker/automated/dockerfoam/apache.svg?style=plastic)](https://hub.docker.com/r/dockerfoam/apache/)  

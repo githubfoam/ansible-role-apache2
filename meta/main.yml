@@ -50,8 +50,6 @@ galaxy_info:
   #   - 1.0
   #   - 7
   #   - 99.99
-  cloud_platforms:
-  - Docker Cloud 
   #galaxy_tags: []
   galaxy_tags:
     - webserver

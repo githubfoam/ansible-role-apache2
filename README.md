@@ -7,6 +7,11 @@ Travis (.com) branch:
 [![Travis (.com)](https://img.shields.io/travis/com/githubfoam/ansible-role-apache2.svg)](https://travis-ci.com/githubfoam/ansible-role-apache2)  
 
 Appveyor master branch status  [![Build status](https://ci.appveyor.com/api/projects/status/193q0lgf0so4bi1n/branch/master?svg=true)](https://ci.appveyor.com/project/githubfoam/ansible-role-apache2/branch/master)  
+
+AppVeyor :[![AppVeyor](https://img.shields.io/appveyor/ci/githubfoam/ansible-role-apache2.svg)](https://ci.appveyor.com/project/githubfoam/ansible-role-apache2)
+AppVeyor branch :[![AppVeyor branch](https://img.shields.io/appveyor/ci/githubfoam/ansible-role-apache2/master.svg)](https://ci.appveyor.com/project/githubfoam/ansible-role-apache2)
+AppVeyor tests :[![AppVeyor tests](https://img.shields.io/appveyor/tests/githubfoam/ansible-role-apache2.svg)](https://ci.appveyor.com/project/githubfoam/ansible-role-apache2)
+
 CircleCI master branch status
 [![CircleCI](https://circleci.com/gh/githubfoam/ansible-role-apache2/tree/master.svg?style=svg)](https://circleci.com/gh/githubfoam/ansible-role-apache2/tree/master)  
 

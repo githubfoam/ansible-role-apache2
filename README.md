@@ -15,6 +15,10 @@ CircleCI master branch status
 [![Docker Pulls](https://img.shields.io/docker/pulls/dockerfoam/apache.svg?style=plastic)](https://hub.docker.com/r/dockerfoam/apache/)  
 [![Docker Stars](https://img.shields.io/docker/stars/dockerfoam/apache.svg?style=plastic)](https://hub.docker.com/r/dockerfoam/apache/)
 
+
+[![GitHub search hit counter](https://img.shields.io/github/search/githubfoam/ansible-role-apache2/goto.svg)](https://github.com/githubfoam/ansible-role-apache2)  
+[![GitHub](https://img.shields.io/github/license/githubfoam/ansible-role-apache2.svg?style=plastic)](https://github.com/githubfoam/ansible-role-apache2)
+
 ----------------
 
 Playbook

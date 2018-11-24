@@ -1,5 +1,7 @@
 apache
 =========
+Ansible Role: [![Ansible Role](https://img.shields.io/ansible/role/d/32309.svg?style=plastic)](https://galaxy.ansible.com/githubfoam/apache)  
+Ansible Role: [![Ansible Role](https://img.shields.io/ansible/role/32309.svg)](https://galaxy.ansible.com/githubfoam/apache)   
 
 Travis (.com) branch:
 [![Travis (.com)](https://img.shields.io/travis/com/githubfoam/ansible-role-apache2.svg)](https://travis-ci.com/githubfoam/ansible-role-apache2)  

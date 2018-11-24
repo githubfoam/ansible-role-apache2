@@ -9,8 +9,9 @@ CircleCI master branch status
 [![CircleCI](https://circleci.com/gh/githubfoam/ansible-role-apache2/tree/master.svg?style=svg)](https://circleci.com/gh/githubfoam/ansible-role-apache2/tree/master)  
 
 
-Ansible Galaxy Repository  
-ansible-galaxy install githubfoam.ansible_role_apache2    https://galaxy.ansible.com/
+[![Docker Automated build](https://img.shields.io/docker/automated/dockerfoam/apache.svg?style=plastic)](https://hub.docker.com/r/dockerfoam/apache/)  
+[![Docker Pulls](https://img.shields.io/docker/pulls/dockerfoam/apache.svg?style=plastic)](https://hub.docker.com/r/dockerfoam/apache/)  
+[![Docker Stars](https://img.shields.io/docker/stars/dockerfoam/apache.svg?style=plastic)](https://hub.docker.com/r/dockerfoam/apache/)
 
 ----------------
 

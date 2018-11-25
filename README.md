@@ -5,6 +5,10 @@ Ansible Role: [![Ansible Role](https://img.shields.io/ansible/role/32309.svg)](h
 
 Travis (.com) branch:
 [![Travis (.com)](https://img.shields.io/travis/com/githubfoam/ansible-role-apache2.svg)](https://travis-ci.com/githubfoam/ansible-role-apache2)  
+Travis (.com) test branch:
+[![Build Status](https://travis-ci.com/githubfoam/ansible-role-apache2.svg?branch=test)](https://travis-ci.com/githubfoam/ansible-role-apache2)  
+Travis (.com) dev branch:
+[![Build Status](https://travis-ci.com/githubfoam/ansible-role-apache2.svg?branch=dev)](https://travis-ci.com/githubfoam/ansible-role-apache2)  
 
 AppVeyor :[![AppVeyor](https://img.shields.io/appveyor/ci/githubfoam/ansible-role-apache2.svg)](https://ci.appveyor.com/project/githubfoam/ansible-role-apache2)  
 AppVeyor branch :[![AppVeyor branch](https://img.shields.io/appveyor/ci/githubfoam/ansible-role-apache2/master.svg)](https://ci.appveyor.com/project/githubfoam/ansible-role-apache2)  

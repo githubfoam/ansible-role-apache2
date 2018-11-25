@@ -1,43 +1,45 @@
 ---
 sudo: required
-
 env:
-  #Linux Docker images for three different CPU architectures: x64, arm and arm64
-  # matrix:
-  #  - ARCH: arm
-  #  - ARCH: arm64
-  #  - ARCH: amd64
-
-   -  distribution=centos
-      version=7
-      init=/usr/lib/systemd/systemd
-      run_opts="--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-
-   -  distribution=ubuntu
-      version=1804
-      init=/lib/systemd/systemd
-      run_opts="--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-
-
+  global:
+   - distribution=ubuntu
+     version=18.04
 services:
   - docker
-
-
 before_install:
-   - 'sudo docker build --rm=true --file=tests/dockerfiles/Dockerfile.${distribution}-${version} --tag=${distribution}-${version}:ansible tests '
-
-script:
-  # Create a random file to store the container ID.
-  - container_id=$(mktemp)
-  - role_name="ansible-role-apache2"
-  # Run container in detached state
-  - 'sudo docker run --detach --volume="${PWD}":/etc/ansible/roles/${role_name}:ro ${run_opts} ${distribution}-${version}:ansible "${init}" > "${container_id}" '
-  # Ansible syntax check.
-  - 'sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=true ansible-playbook -v /etc/ansible/roles/${role_name}/tests/test.yml --syntax-check'
-
-  # Test role.
-  - 'sudo docker exec  "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=true ansible-playbook  /etc/ansible/roles/${role_name}/tests/test.yml'
-
+  - docker pull ${distribution}:${version}
+jobs:
+  include:
+    - stage: Continuous Integration Step, white box SAST etc tests
+      script:
+        # Create a random file to store the container ID.
+        - container_id=$(mktemp)
+        - role_name="ansible-role-apache2"
+        # Run container in detached state
+        - docker run -t -d ${distribution}:${version} > "${container_id}"
+        # Install ansible on the same container via container_id
+        - docker exec "$(cat ${container_id})" apt-get update
+        - docker exec "$(cat ${container_id})" apt-get install software-properties-common -y
+        - docker exec "$(cat ${container_id})" apt-add-repository --yes --update ppa:ansible/ansible
+        - docker exec "$(cat ${container_id})" apt-get install ansible -y
+        - docker exec "$(cat ${container_id})" mkdir /etc/ansible/roles/${role_name}
+        - docker cp "${PWD}/." "$(cat ${container_id})":/etc/ansible/roles/${role_name}
+        # Ansible syntax check.
+        - docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=true ansible-playbook -v /etc/ansible/roles/${role_name}/tests/test.yml --syntax-check
+        # Test role.
+        - docker exec  "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=true ansible-playbook  /etc/ansible/roles/${role_name}/tests/test.yml
+    - stage: Continuous Delivery Step, black box DAST etc tests
+      script:
+        # DODCKER_TOKEN must be entered travis website -> repository -> settings -> environment variables
+        - curl https://registry.hub.docker.com/u/dockerfoam/apache/trigger/$DOCKER_TOKEN/
+    - stage: Continuous Deployment Step, one button to deploy docker image
+      script:
+        # DODCKER_TOKEN must be entered travis website -> repository -> settings -> environment variables
+        - curl https://registry.hub.docker.com/u/dockerfoam/apache/trigger/$DOCKER_TOKEN/
+after_success:
+    - stage: Workflow ends
+      script:
+        - echo "success"
  # Notify Ansible Galaxy when an ansible role builds successfully.
 notifications:
    #email: false

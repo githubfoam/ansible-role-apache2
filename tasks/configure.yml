@@ -1,11 +1,2 @@
 ---
 # Configuring apache2
-# - name: apache2 configuration file
-#   copy: src=httpd.conf.j2 dest=/etc/apache2/httpd.conf
-#   notify: restart apache service
-
-# - name: create the webpage index.html
-#   copy: src=index.html dest=/var/www/html/index.html
-#
-# - name: copy the image resource
-#   copy: src=Blue_marble_2015.jpg dest=/var/www/html/Blue_marble_2015.jpg

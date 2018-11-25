@@ -4,9 +4,9 @@ jobs:
     docker:
       # Primary container image where all steps run.
      - image: buildpack-deps:bionic
-     #
+     # Secondary container image on common network.
      - image: httpd
-     #
+     # Third container image on common network.
      - image: mongo:3.4.17-jessie
 
     working_directory: ~/

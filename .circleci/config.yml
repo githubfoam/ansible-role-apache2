@@ -8,9 +8,7 @@ jobs:
      - image: httpd
      # Third container image on common network.
      - image: mongo:3.4.17-jessie
-
     working_directory: ~/
-
     steps:
       #- checkout
       # command will execute in trusty container

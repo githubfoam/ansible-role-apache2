@@ -11,13 +11,9 @@ environment:
   #   init: /lib/systemd/systemd
   #   version: 1804
   #   run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-
 services:
   - docker
-
 install:
-
-
 build_script:
   - sh: ./DockerRedHatAppveyor.sh
   - sh: ./DockerDebianAppveyor.sh
@@ -37,13 +33,9 @@ build_script:
 # # container is stopped and destroyed
 # - 'sudo docker stop "$(cat ${container_id})" '
 # - 'sudo docker rm -f "$(cat ${container_id})"'
-
-
 test_script:
 # test scripts must be here
-
 build: off
-
 # Notify Ansible Galaxy when an ansible role builds successfully.
 notifications:
   - provider: Webhook

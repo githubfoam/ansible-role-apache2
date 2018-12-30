@@ -1,6 +1,10 @@
+---
 version: 2
 jobs:
   build:
+    branches:
+      only:
+        - circleci
     docker:
       # Primary container image where all steps run.
      - image: buildpack-deps:bionic

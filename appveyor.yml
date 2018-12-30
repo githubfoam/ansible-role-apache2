@@ -1,4 +1,8 @@
 version: 1.0.{build}
+branches:
+  # whitelist
+  only:
+    - master
 image:
   #- ubuntu1604
   - ubuntu1804

@@ -31,11 +31,24 @@ jobs:
     - stage: Continuous Delivery Step, black box DAST etc tests
       script:
         # DODCKER_TOKEN must be entered travis website -> repository -> settings -> environment variables
-        - curl https://registry.hub.docker.com/u/dockerfoam/apache/trigger/$DOCKER_TOKEN/
+        # - curl https://registry.hub.docker.com/u/dockerfoam/apache/trigger/$DOCKER_TOKEN/
+        - sudo docker image ls
+        - git_sha="${TRAVIS_COMMIT}"
+        - export DOCKER_IMAGE="ansible-role-apache2" #github repo name
+        - export DOCKER_REPO="apache" #docker repo name
+        - sudo docker build -t $DOCKER_IMAGE:$TRAVIS_COMMIT . --file=/tests/dockerfiles/Dockerfile.ubuntu-18.04
+        - echo $DOCKER_TOKEN | sudo docker login --username $DOCKER_USERNAME --password-stdin
+        - sudo docker tag $DOCKER_IMAGE:$TRAVIS_COMMIT "$DOCKER_USERNAME/$DOCKER_REPO:${git_sha}"
+        - sudo docker push "$DOCKER_USERNAME/$DOCKER_REPO:${git_sha}"
+        - sudo docker logout
+        - sudo docker image ls
     - stage: Continuous Deployment Step, one button to deploy docker image
       script:
         # DODCKER_TOKEN must be entered travis website -> repository -> settings -> environment variables
-        - curl https://registry.hub.docker.com/u/dockerfoam/apache/trigger/$DOCKER_TOKEN/
+        # - curl https://registry.hub.docker.com/u/dockerfoam/apache/trigger/$DOCKER_TOKEN/
+        - sudo docker run -p 8000:80 "$DOCKER_USERNAME/$DOCKER_REPO:$DOCKER_IMAGE" &
+        - sudo docker image ls
+        - sudo docker container ls
 after_success:
     - stage: Workflow ends
       script:

@@ -36,7 +36,9 @@ jobs:
         - git_sha="${TRAVIS_COMMIT}"
         - export DOCKER_IMAGE="ansible-role-apache2" #github repo name
         - export DOCKER_REPO="apache" #docker repo name
+        - ls -lai
         - sudo docker build -t $DOCKER_IMAGE:$TRAVIS_COMMIT . --file=/tests/dockerfiles/Dockerfile.ubuntu-18.04
+        - sudo docker build -t $DOCKER_IMAGE:$TRAVIS_COMMIT . --file=Dockerfile.ubuntu-18.04
         - echo $DOCKER_TOKEN | sudo docker login --username $DOCKER_USERNAME --password-stdin
         - sudo docker tag $DOCKER_IMAGE:$TRAVIS_COMMIT "$DOCKER_USERNAME/$DOCKER_REPO:${git_sha}"
         - sudo docker push "$DOCKER_USERNAME/$DOCKER_REPO:${git_sha}"
